@@ -1,0 +1,8 @@
+Options -Multiviews
+
+DirectoryIndex index.php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?url=$1 [L]
+RewriteRule !^(public/|index\.php) [NC,F]
