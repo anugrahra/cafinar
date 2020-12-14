@@ -2,6 +2,9 @@
   <div class="col">
     <h3>PENGELUARAN</h3>
   </div>
+  <div class="col text-right">
+    <h3 class="text-success">Saldo: <?= number_format($data['saldo']['saldo']); ?></h3>
+  </div>
 </div>
 
 <div class="row">
@@ -58,7 +61,7 @@
         ?>
           <tr>
             <td><?= $no++; ?></td>
-            <td><?= $pengeluaran['nominal']; ?></td>
+            <td><?= number_format($pengeluaran['nominal']); ?></td>
             <td><?= $pengeluaran['tujuan']; ?></td>
             <td><?= date('d F Y', strtotime($pengeluaran['tanggal'])); ?></td>
             <td><?= $pengeluaran['keterangan']; ?></td>

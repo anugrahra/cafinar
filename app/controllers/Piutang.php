@@ -12,6 +12,7 @@ class Piutang extends Controller
     $data['bulan'] = date('F');
     $data['tahun'] = date('Y');
     $data['piutang'] = $this->model('Piutang_model')->showCurrentMonthPiutang();
+    $data['saldo'] = $this->model('Saldo_model')->showSaldo();
 
     if (isset($_POST['bulan'])) {
       if ($this->model('Piutang_model')->getPiutangByDate($_POST) > 0) {

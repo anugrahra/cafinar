@@ -12,6 +12,7 @@ class Pemasukan extends Controller
     $data['bulan'] = date('F');
     $data['tahun'] = date('Y');
     $data['pemasukan'] = $this->model('Pemasukan_model')->showCurrentMonthPemasukan();
+    $data['saldo'] = $this->model('Saldo_model')->showSaldo();
 
     if (isset($_POST['bulan'])) {
       if ($this->model('Pemasukan_model')->getPemasukanByDate($_POST) > 0) {
@@ -29,7 +30,7 @@ class Pemasukan extends Controller
 
     $data['title'] = 'PEMASUKAN | ' . $this->title;
     $this->view('templates/header', $data);
-    $this->view('templates/navbar');
+    $this->view('templates/navbar', $data);
     $this->view('pemasukan/index', $data);
     $this->view('templates/footer');
   }
@@ -46,9 +47,15 @@ class Pemasukan extends Controller
   public function prosesTambah()
   {
     if ($this->model('Pemasukan_model')->tambah($_POST) > 0) {
-      Flasher::setFlash('success', 'Pemasukan', 'berhasil', 'ditambahkan');
-      header('Location: ' . BASEURL . '/pemasukan');
-      exit;
+      if ($this->model('Saldo_model')->masuk($_POST) > 0) {
+        Flasher::setFlash('success', 'Pemasukan', 'berhasil', 'ditambahkan');
+        header('Location: ' . BASEURL . '/pemasukan');
+        exit;
+      } else {
+        Flasher::setFlash('success', 'Saldo', 'gagal', 'ditambahkan');
+        header('Location: ' . BASEURL . '/pemasukan');
+        exit;
+      }
     } else {
       Flasher::setFlash('danger', 'Pemasukan', 'gagal', 'ditambahkan');
       header('Location: ' . BASEURL . '/pemasukan/tambah');

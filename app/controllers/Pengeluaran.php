@@ -12,6 +12,7 @@ class Pengeluaran extends Controller
     $data['bulan'] = date('F');
     $data['tahun'] = date('Y');
     $data['pengeluaran'] = $this->model('Pengeluaran_model')->showCurrentMonthPengeluaran();
+    $data['saldo'] = $this->model('Saldo_model')->showSaldo();
 
     if (isset($_POST['bulan'])) {
       if ($this->model('Pengeluaran_model')->getPengeluaranByDate($_POST) > 0) {
@@ -46,9 +47,15 @@ class Pengeluaran extends Controller
   public function prosesTambah()
   {
     if ($this->model('Pengeluaran_model')->tambah($_POST) > 0) {
-      Flasher::setFlash('success', 'Pengeluaran', 'berhasil', 'ditambahkan');
-      header('Location: ' . BASEURL . '/pengeluaran');
-      exit;
+      if ($this->model('Saldo_model')->masuk($_POST) > 0) {
+        Flasher::setFlash('success', 'Pengeluaran', 'berhasil', 'ditambahkan');
+        header('Location: ' . BASEURL . '/pengeluaran');
+        exit;
+      } else {
+        Flasher::setFlash('success', 'Saldo', 'gagal', 'dikurangi');
+        header('Location: ' . BASEURL . '/pengeluaran');
+        exit;
+      }
     } else {
       Flasher::setFlash('danger', 'Pengeluaran', 'gagal', 'ditambahkan');
       header('Location: ' . BASEURL . '/pengeluaran/tambah');

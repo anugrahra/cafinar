@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <h3>EMAS</h3>
+    <h3>INVESTASI EMAS</h3>
   </div>
 </div>
 
@@ -17,6 +17,7 @@
         <tr class="text-center">
           <th scope="col">No</th>
           <th scope="col">Berat</th>
+          <th scope="col">Tanggal Beli</th>
         </tr>
       </thead>
       <tbody>
@@ -26,7 +27,8 @@
         ?>
           <tr>
             <td><?= $no++; ?></td>
-            <td><?= $emas['berat']; ?> gr</td>
+            <td><?= number_format($emas['berat']); ?> gr</td>
+            <td><?= date('d F Y', strtotime($emas['tgl_beli'])); ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

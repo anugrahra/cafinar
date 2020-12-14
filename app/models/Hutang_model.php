@@ -10,6 +10,13 @@ class Hutang_model
     $this->db = new Database;
   }
 
+  public function showTotal()
+  {
+    $this->db->query("SELECT SUM(nominal) AS total FROM " . $this->table);
+
+    return $this->db->single();
+  }
+
   public function showCurrentMonthHutang()
   {
     $this->db->query("SELECT * FROM " . $this->table . "

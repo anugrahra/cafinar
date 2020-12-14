@@ -12,6 +12,8 @@ class Hutang extends Controller
     $data['bulan'] = date('F');
     $data['tahun'] = date('Y');
     $data['hutang'] = $this->model('Hutang_model')->showCurrentMonthHutang();
+    $data['saldo'] = $this->model('Saldo_model')->showSaldo();
+    $data['total'] = $this->model('Hutang_model')->showTotal();
 
     if (isset($_POST['bulan'])) {
       if ($this->model('Hutang_model')->getHutangByDate($_POST) > 0) {

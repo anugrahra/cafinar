@@ -2,6 +2,9 @@
   <div class="col">
     <h3>PEMASUKAN</h3>
   </div>
+  <div class="col text-right">
+    <h3 class="text-success">Saldo: <?= number_format($data['saldo']['saldo']); ?></h3>
+  </div>
 </div>
 
 <div class="row">
@@ -58,7 +61,7 @@
         ?>
           <tr>
             <td><?= $no++; ?></td>
-            <td><?= $pemasukan['nominal']; ?></td>
+            <td><?= number_format($pemasukan['nominal']); ?></td>
             <td><?= $pemasukan['sumber']; ?></td>
             <td><?= date('d F Y', strtotime($pemasukan['tanggal'])); ?></td>
             <td><?= $pemasukan['keterangan']; ?></td>

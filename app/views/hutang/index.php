@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col">
-    <h3>HUTANG</h3>
+    <h3>HUTANG <span class="text-danger">(Rp .<?= number_format($data['total']['total']); ?>)</span></h3>
+  </div>
+  <div class="col text-right">
+    <h3 class="text-success">Saldo: <?= number_format($data['saldo']['saldo']); ?></h3>
   </div>
 </div>
 
@@ -58,7 +61,7 @@
         ?>
           <tr>
             <td><?= $no++; ?></td>
-            <td><?= $hutang['nominal']; ?></td>
+            <td><?= number_format($hutang['nominal']); ?></td>
             <td><?= $hutang['sumber']; ?></td>
             <td><?= date('d F Y', strtotime($hutang['tanggal'])); ?></td>
             <td><?= $hutang['keterangan']; ?></td>

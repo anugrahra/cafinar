@@ -2,6 +2,9 @@
   <div class="col">
     <h3>PIUTANG</h3>
   </div>
+  <div class="col text-right">
+    <h3 class="text-success">Saldo: <?= number_format($data['saldo']['saldo']); ?></h3>
+  </div>
 </div>
 
 <div class="row">

@@ -2,7 +2,7 @@
   <div class="col">
     <div class="list-group list-group-horizontal-md text-center saldo">
       <div class="list-group-item list-group-item-action shadow p-3 rounded">
-        <h1 class="text-success font-weight-bold">Rp. 10000000</h1>
+        <h1 class="text-success font-weight-bold">Rp. <?= number_format($data['saldo']['saldo']); ?></h1>
         <small>
           <p>Saldo</p>
         </small>
@@ -14,7 +14,7 @@
   <div class="col">
     <div class="list-group list-group-horizontal-md text-center">
       <a href="<?= BASEURL; ?>/emas" class="list-group-item list-group-item-action shadow p-3 rounded">
-        <h1 class="text-warning font-weight-bold">1000 gr</h1>
+        <h1 class="text-warning font-weight-bold"><?= number_format(1000); ?> gr</h1>
         <small>
           <p>Investasi Emas</p>
         </small>
@@ -26,13 +26,13 @@
   <div class="col">
     <div class="list-group list-group-horizontal-md text-center">
       <a href="<?= BASEURL; ?>/piutang" class="list-group-item list-group-item-action shadow p-3 rounded">
-        <h1 class="text-primary font-weight-bold">Rp. 15000</h1>
+        <h1 class="text-primary font-weight-bold">Rp. <?= number_format(1000); ?></h1>
         <small>
           <p>Piutang</p>
         </small>
       </a>
       <a href="<?= BASEURL; ?>/hutang" class="list-group-item list-group-item-action shadow p-3 rounded">
-        <h1 class="text-danger font-weight-bold">Rp. 1000</h1>
+        <h1 class="text-danger font-weight-bold">Rp. <?= number_format(1000); ?></h1>
         <small>
           <p>Hutang</p>
         </small>
