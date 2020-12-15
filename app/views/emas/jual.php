@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <h3>INVESTASI EMAS <span class="text-warning">(<?= number_format($data['total']['total']); ?> gr)</span></h3>
+    <h3>JUAL EMAS</h3>
   </div>
 </div>
 
@@ -18,6 +18,7 @@
           <th scope="col">No</th>
           <th scope="col">Berat</th>
           <th scope="col">Tanggal Beli</th>
+          <th scope="col">Jual</th>
         </tr>
       </thead>
       <tbody>
@@ -29,6 +30,7 @@
             <td><?= $no++; ?></td>
             <td><?= number_format($emas['berat']); ?> gr</td>
             <td><?= date('d F Y', strtotime($emas['tgl_beli'])); ?></td>
+            <td><a href="<?= BASEURL; ?>/emas/prosesjual/<?= $emas['id']; ?>" class="badge badge-danger" onclick="confirm('Sure?')">jual</a></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

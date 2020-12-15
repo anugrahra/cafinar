@@ -13,6 +13,7 @@ class Piutang extends Controller
     $data['tahun'] = date('Y');
     $data['piutang'] = $this->model('Piutang_model')->showCurrentMonthPiutang();
     $data['saldo'] = $this->model('Saldo_model')->showSaldo();
+    $data['total'] = $this->model('Piutang_model')->showTotal();
 
     if (isset($_POST['bulan'])) {
       if ($this->model('Piutang_model')->getPiutangByDate($_POST) > 0) {
@@ -47,9 +48,15 @@ class Piutang extends Controller
   public function prosesTambah()
   {
     if ($this->model('Piutang_model')->tambah($_POST) > 0) {
-      Flasher::setFlash('success', 'Piutang', 'berhasil', 'ditambahkan');
-      header('Location: ' . BASEURL . '/piutang');
-      exit;
+      if ($this->model('Saldo_model')->keluar($_POST) > 0) {
+        Flasher::setFlash('success', 'Piutang', 'berhasil', 'ditambahkan');
+        header('Location: ' . BASEURL . '/piutang');
+        exit;
+      } else {
+        Flasher::setFlash('success', 'Saldo', 'gagal', 'dikurangi');
+        header('Location: ' . BASEURL . '/piutang');
+        exit;
+      }
     } else {
       Flasher::setFlash('danger', 'Piutang', 'gagal', 'ditambahkan');
       header('Location: ' . BASEURL . '/piutang/tambah');

@@ -52,8 +52,9 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="<?= BASEURL; ?>/emas">Daftar Emas</a>
-            <a class="dropdown-item" href="<?= BASEURL; ?>/emas/tambah">Tambah Emas</a>
-            <a class="dropdown-item" href="<?= BASEURL; ?>/emas/jual">Jual Emas</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/emas/beli">Beli</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/emas/jual">Jual</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/emas/info">Info</a>
           </div>
         </div>
         <a class="nav-item nav-link text-danger" href="<?= BASEURL; ?>/auth/signout">Logout</a>

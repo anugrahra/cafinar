@@ -10,6 +10,13 @@ class Piutang_model
     $this->db = new Database;
   }
 
+  public function showTotal()
+  {
+    $this->db->query("SELECT SUM(nominal) AS total FROM " . $this->table);
+
+    return $this->db->single();
+  }
+
   public function showCurrentMonthPiutang()
   {
     $this->db->query("SELECT * FROM " . $this->table . "

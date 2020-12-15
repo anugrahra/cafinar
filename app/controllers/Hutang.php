@@ -48,12 +48,18 @@ class Hutang extends Controller
   public function prosesTambah()
   {
     if ($this->model('Hutang_model')->tambah($_POST) > 0) {
-      Flasher::setFlash('success', 'Hutang', 'berhasil', 'ditambahkan');
-      header('Location: ' . BASEURL . '/Hutang');
-      exit;
+      if ($this->model('Saldo_model')->masuk($_POST) > 0) {
+        Flasher::setFlash('success', 'Hutang', 'berhasil', 'ditambahkan');
+        header('Location: ' . BASEURL . '/hutang');
+        exit;
+      } else {
+        Flasher::setFlash('success', 'Saldo', 'gagal', 'dikurangi');
+        header('Location: ' . BASEURL . '/hutang');
+        exit;
+      }
     } else {
       Flasher::setFlash('danger', 'Hutang', 'gagal', 'ditambahkan');
-      header('Location: ' . BASEURL . '/piutang/tambah');
+      header('Location: ' . BASEURL . '/hutang/tambah');
       exit;
     }
   }
