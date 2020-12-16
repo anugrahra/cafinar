@@ -52,6 +52,7 @@
           <th scope="col">Kreditur</th>
           <th scope="col">Tanggal</th>
           <th scope="col">Ket.</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -65,6 +66,16 @@
             <td><?= $hutang['sumber']; ?></td>
             <td><?= date('d F Y', strtotime($hutang['tanggal'])); ?></td>
             <td><?= $hutang['keterangan']; ?></td>
+            <td>
+              <form method="post" action="<?= BASEURL; ?>/hutang/bayar">
+                <input type="text" value="<?= $hutang['id']; ?>" name="id" class="d-none">
+                <input type="number" value="<?= $hutang['nominal']; ?>" name="nominal" class="d-none">
+                <input type="date" value="<?= date('Y-m-d'); ?>" name="tanggal" class="d-none">
+                <input type="text" value="bayar hutang ke <?= $hutang['sumber']; ?>" name="tujuan" class="d-none">
+                <input type="text" value="" name="keterangan" class="d-none">
+                <button class="btn btn-success" onclick="confirm('Sure?')">bayar</button>
+              </form>
+            </td>
           </tr>
         <?php endforeach; ?>
       </tbody>

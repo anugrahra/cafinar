@@ -52,6 +52,8 @@
           <th scope="col">Debitur</th>
           <th scope="col">Tanggal</th>
           <th scope="col">Ket.</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -65,6 +67,19 @@
             <td><?= $piutang['kepada']; ?></td>
             <td><?= date('d F Y', strtotime($piutang['tanggal'])); ?></td>
             <td><?= $piutang['keterangan']; ?></td>
+            <td>
+              <form method="post" action="<?= BASEURL; ?>/piutang/dibayar">
+                <input type="text" value="<?= $piutang['id']; ?>" name="id" class="d-none">
+                <input type="number" value="<?= $piutang['nominal']; ?>" name="nominal" class="d-none">
+                <input type="date" value="<?= date('Y-m-d'); ?>" name="tanggal" class="d-none">
+                <input type="text" value="<?= $piutang['kepada']; ?> bayar hutang" name="sumber" class="d-none">
+                <input type="text" value="" name="keterangan" class="d-none">
+                <button class="btn btn-success" onclick="confirm('Sure?')">dibayar</button>
+              </form>
+            </td>
+            <td>
+              <a href="<?= BASEURL; ?>/piutang/ikhlaskan/<?= $piutang['id']; ?>" class="btn btn-warning">ikhlaskan</a>
+            </td>
           </tr>
         <?php endforeach; ?>
       </tbody>

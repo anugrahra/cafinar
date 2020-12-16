@@ -77,4 +77,14 @@ class Hutang_model
 
     return $this->db->rowCount();
   }
+
+  public function bayar($data)
+  {
+    $this->db->query('DELETE FROM ' . $this->table . ' WHERE id=:id');
+    $this->db->bind('id', $data['id']);
+
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
 }

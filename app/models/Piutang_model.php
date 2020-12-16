@@ -77,4 +77,24 @@ class Piutang_model
 
     return $this->db->rowCount();
   }
+
+  public function dibayar($data)
+  {
+    $this->db->query('DELETE FROM ' . $this->table . ' WHERE id=:id');
+    $this->db->bind('id', $data['id']);
+
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
+
+  public function ikhlaskan($id)
+  {
+    $this->db->query('DELETE FROM ' . $this->table . ' WHERE id=:id');
+    $this->db->bind('id', $id);
+
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
 }

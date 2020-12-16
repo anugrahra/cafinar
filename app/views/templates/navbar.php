@@ -35,6 +35,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="<?= BASEURL; ?>/piutang">Daftar Piutang</a>
             <a class="dropdown-item" href="<?= BASEURL; ?>/piutang/tambah">Tambah Piutang</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/piutang/dibayar">Dibayar</a>
           </div>
         </div>
         <div class="nav-item dropdown">
@@ -44,6 +45,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="<?= BASEURL; ?>/hutang">Daftar Hutang</a>
             <a class="dropdown-item" href="<?= BASEURL; ?>/hutang/tambah">Tambah Hutang</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/hutang/bayar">Bayar</a>
           </div>
         </div>
         <div class="nav-item dropdown">

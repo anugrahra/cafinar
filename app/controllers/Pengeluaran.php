@@ -47,7 +47,7 @@ class Pengeluaran extends Controller
   public function prosesTambah()
   {
     if ($this->model('Pengeluaran_model')->tambah($_POST) > 0) {
-      if ($this->model('Saldo_model')->masuk($_POST) > 0) {
+      if ($this->model('Saldo_model')->keluar($_POST) > 0) {
         Flasher::setFlash('success', 'Pengeluaran', 'berhasil', 'ditambahkan');
         header('Location: ' . BASEURL . '/pengeluaran');
         exit;

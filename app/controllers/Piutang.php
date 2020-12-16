@@ -63,4 +63,42 @@ class Piutang extends Controller
       exit;
     }
   }
+
+  public function dibayar()
+  {
+    if ($this->model('Piutang_model')->dibayar($_POST) > 0) {
+      if ($this->model('Pemasukan_model')->tambah($_POST) > 0) {
+        if ($this->model('Saldo_model')->masuk($_POST) > 0) {
+          Flasher::setFlash('success', 'Piutang', 'berhasil', 'dibayar');
+          header('Location: ' . BASEURL . '/piutang');
+          exit;
+        } else {
+          Flasher::setFlash('danger', 'Saldo', 'gagal', 'diupdate');
+          header('Location: ' . BASEURL . '/piutang');
+          exit;
+        }
+      } else {
+        Flasher::setFlash('danger', 'Pemasukan', 'gagal', 'ditambahkan');
+        header('Location: ' . BASEURL . '/piutang');
+        exit;
+      }
+    } else {
+      Flasher::setFlash('danger', 'Piutang', 'gagal', 'dibayar');
+      header('Location: ' . BASEURL . '/piutang');
+      exit;
+    }
+  }
+
+  public function ikhlaskan($id)
+  {
+    if ($this->model('Piutang_model')->ikhlaskan($id) > 0) {
+      Flasher::setFlash('success', 'Piutang', 'berhasil', 'diikhlaskan');
+      header('Location: ' . BASEURL . '/piutang');
+      exit;
+    } else {
+      Flasher::setFlash('danger', 'Piutang', 'gagal', 'diikhlaskan');
+      header('Location: ' . BASEURL . '/piutang');
+      exit;
+    }
+  }
 }

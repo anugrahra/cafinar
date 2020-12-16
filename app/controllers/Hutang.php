@@ -63,4 +63,29 @@ class Hutang extends Controller
       exit;
     }
   }
+
+  public function bayar()
+  {
+    if ($this->model('Hutang_model')->bayar($_POST) > 0) {
+      if ($this->model('Pengeluaran_model')->tambah($_POST) > 0) {
+        if ($this->model('Saldo_model')->keluar($_POST) > 0) {
+          Flasher::setFlash('success', 'Hutang', 'berhasil', 'dibayar');
+          header('Location: ' . BASEURL . '/hutang');
+          exit;
+        } else {
+          Flasher::setFlash('danger', 'Saldo', 'gagal', 'ditambahkan');
+          header('Location: ' . BASEURL . '/hutang');
+          exit;
+        }
+      } else {
+        Flasher::setFlash('danger', 'Pengeluaran', 'gagal', 'ditambahkan');
+        header('Location: ' . BASEURL . '/hutang');
+        exit;
+      }
+    } else {
+      Flasher::setFlash('danger', 'Hutang', 'gagal', 'dibayar');
+      header('Location: ' . BASEURL . '/hutang');
+      exit;
+    }
+  }
 }
