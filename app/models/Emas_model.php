@@ -24,6 +24,13 @@ class Emas_model
     return $this->db->resultSet();
   }
 
+  public function showEmasById($id)
+  {
+    $this->db->query("SELECT * FROM " . $this->table . " WHERE id = :id");
+    $this->db->bind('id', $id);
+    return $this->db->single();
+  }
+
   public function beli($data)
   {
     $query  = "INSERT INTO " . $this->table . " VALUES ('', :berat, :tanggal)";
@@ -37,10 +44,10 @@ class Emas_model
     return $this->db->rowCount();
   }
 
-  public function jual($id)
+  public function jual($data)
   {
     $this->db->query('DELETE FROM ' . $this->table . ' WHERE id=:id');
-    $this->db->bind('id', $id);
+    $this->db->bind('id', $data['id']);
 
     $this->db->execute();
 

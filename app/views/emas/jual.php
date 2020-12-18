@@ -30,7 +30,7 @@
             <td><?= $no++; ?></td>
             <td><?= number_format($emas['berat']); ?> gr</td>
             <td><?= date('d F Y', strtotime($emas['tgl_beli'])); ?></td>
-            <td><a href="<?= BASEURL; ?>/emas/prosesjual/<?= $emas['id']; ?>" class="badge badge-danger" onclick="confirm('Sure?')">jual</a></td>
+            <td><a href="<?= BASEURL; ?>/emas/show/<?= $emas['id']; ?>" class="badge badge-danger" onclick="confirm('Sure?')">jual</a></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
