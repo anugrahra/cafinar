@@ -14,7 +14,7 @@
   <div class="col">
     <div class="list-group list-group-horizontal-md text-center">
       <a href="<?= BASEURL; ?>/emas" class="list-group-item list-group-item-action shadow p-3 rounded">
-        <h1 class="text-warning font-weight-bold"><?= number_format($data['emas']['total']); ?> gr</h1>
+        <h1 class="text-warning font-weight-bold"><?= number_format($data['emas']['total'], 2); ?> gr</h1>
         <small>
           <p>Investasi Emas</p>
         </small>
