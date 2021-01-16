@@ -1,4 +1,8 @@
-<div id="div_chart_antam" align="center"></div>
+<div class="row">
+  <div class="col">
+    <div id="div_chart_antam" align="center"></div>
+  </div>
+</div>
 <script src="https://harga-emas.org/widget/widget.js"></script>
 <script>
   v_widget_type = "chart_gold_antam";

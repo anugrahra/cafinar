@@ -4,6 +4,11 @@ class Controller
 {
   public $title = 'CAFINAR';
 
+  public function __construct()
+  {
+    date_default_timezone_set("Asia/Jakarta");
+  }
+
   public function view($view, $data = [])
   {
     require_once 'app/views/' . $view . '.php';

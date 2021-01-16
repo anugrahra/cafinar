@@ -59,6 +59,7 @@
             <a class="dropdown-item" href="<?= BASEURL; ?>/emas/info">Info</a>
           </div>
         </div>
+        <a class="nav-item nav-link" href="<?= BASEURL; ?>/analisa">Analisa</a>
         <a class="nav-item nav-link text-danger" href="<?= BASEURL; ?>/auth/signout">Logout</a>
       </div>
     </div>

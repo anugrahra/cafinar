@@ -2,10 +2,8 @@
   <div class="col">
     <div class="list-group list-group-horizontal-md text-center saldo">
       <div class="list-group-item list-group-item-action shadow p-3 rounded">
-        <h1 class="text-success font-weight-bold">Rp. <?= number_format($data['saldo']['saldo']); ?></h1>
-        <small>
-          <p>Saldo</p>
-        </small>
+        <h4 class="text-dark font-weight-bold">Saldo</h4>
+        <h1 class="text-success font-weight-bold">Rp. <?= number_format($data['saldo']['saldo'], 2); ?></h1>
       </div>
     </div>
   </div>
@@ -14,10 +12,8 @@
   <div class="col">
     <div class="list-group list-group-horizontal-md text-center">
       <a href="<?= BASEURL; ?>/emas" class="list-group-item list-group-item-action shadow p-3 rounded">
+        <h4 class="text-dark font-weight-bold">Emas</h4>
         <h1 class="text-warning font-weight-bold"><?= number_format($data['emas']['total'], 2); ?> gr</h1>
-        <small>
-          <p>Investasi Emas</p>
-        </small>
       </a>
     </div>
   </div>
@@ -26,16 +22,12 @@
   <div class="col">
     <div class="list-group list-group-horizontal-md text-center">
       <a href="<?= BASEURL; ?>/piutang" class="list-group-item list-group-item-action shadow p-3 rounded">
-        <h1 class="text-primary font-weight-bold">Rp. <?= number_format($data['piutang']['total']); ?></h1>
-        <small>
-          <p>Piutang</p>
-        </small>
+        <h4 class="text-dark font-weight-bold">Piutang</h4>
+        <h1 class="text-primary font-weight-bold">Rp. <?= number_format($data['piutang']['total'], 2); ?></h1>
       </a>
       <a href="<?= BASEURL; ?>/hutang" class="list-group-item list-group-item-action shadow p-3 rounded">
-        <h1 class="text-danger font-weight-bold">Rp. <?= number_format($data['hutang']['total']); ?></h1>
-        <small>
-          <p>Hutang</p>
-        </small>
+        <h4 class="text-dark font-weight-bold">Hutang</h4>
+        <h1 class="text-danger font-weight-bold">Rp. <?= number_format($data['hutang']['total'], 2); ?></h1>
       </a>
     </div>
   </div>
