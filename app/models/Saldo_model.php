@@ -22,6 +22,12 @@ class Saldo_model
     $saldo = $this->showSaldo();
     $saldo = $saldo['saldo'];
 
+    if (isset($data['narik'])) {
+      if ($data['narik'] != 0) {
+        $data['nominal'] = $data['narik'];
+      }
+    }
+
     $query  = "UPDATE " . $this->table . " SET saldo = ($saldo + :pemasukan), tanggal = :tanggal WHERE id = 1";
 
     $this->db->query($query);
@@ -36,6 +42,12 @@ class Saldo_model
   {
     $saldo = $this->showSaldo();
     $saldo = $saldo['saldo'];
+
+    if (isset($data['nabung'])) {
+      if ($data['nabung'] != 0) {
+        $data['nominal'] = $data['nabung'];
+      }
+    }
 
     $query  = "UPDATE " . $this->table . " SET saldo = ($saldo - :pengeluaran), tanggal = :tanggal WHERE id = 1";
 

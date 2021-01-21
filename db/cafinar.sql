@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2020 at 07:43 PM
+-- Generation Time: Jan 20, 2021 at 04:48 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -49,7 +49,7 @@ INSERT INTO `akun` (`id`, `username`, `password`) VALUES
 
 CREATE TABLE `emas` (
   `id` int(3) NOT NULL,
-  `berat` int(3) NOT NULL,
+  `berat` float NOT NULL,
   `tgl_beli` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -58,13 +58,10 @@ CREATE TABLE `emas` (
 --
 
 INSERT INTO `emas` (`id`, `berat`, `tgl_beli`) VALUES
-(1, 1, '2020-12-14'),
-(3, 10, '2020-12-17'),
-(4, 10, '2020-12-17'),
-(5, 10, '2020-12-17'),
-(6, 1, '2020-12-19'),
-(7, 2, '2020-12-19'),
-(8, 3, '2020-12-19');
+(1, 5, '2020-12-14'),
+(3, 1, '2020-12-17'),
+(4, 1, '2020-12-17'),
+(5, 0.5, '2020-12-17');
 
 -- --------------------------------------------------------
 
@@ -99,14 +96,8 @@ CREATE TABLE `pemasukan` (
 --
 
 INSERT INTO `pemasukan` (`id`, `tanggal`, `nominal`, `sumber`, `keterangan`) VALUES
-(1, '2020-07-02 11:46:25', 3000000, 'gaji', ''),
-(6, '2020-12-09 14:35:40', 100000, 'langit', ''),
-(7, '2020-12-12 17:00:00', 10000, 'Dida', 'dikasih'),
-(8, '2020-12-13 17:00:00', 10000, 'dikasih', ''),
-(9, '2020-12-13 17:00:00', 10000, 'dikasih', ''),
-(10, '2020-12-13 17:00:00', 50000, 'bonus', ''),
-(11, '2020-12-15 17:00:00', 70000, 'galing bayar hutang', ''),
-(12, '2020-12-18 17:00:00', 10000000, 'jual emas 10 gram', '');
+(1, '2021-01-10 17:00:00', 20000, 'BLUD Air Minum Kota Cimahi', 'buat ngegantiin aksesoris perbaikan bak mixer kaporit'),
+(2, '2021-01-14 17:00:00', 250000, 'PT. Tirta Anugrah Utama', 'Presentasi Jar Test IPA Universitas Pendidikan Indonesia');
 
 -- --------------------------------------------------------
 
@@ -127,17 +118,32 @@ CREATE TABLE `pengeluaran` (
 --
 
 INSERT INTO `pengeluaran` (`id`, `tanggal`, `nominal`, `tujuan`, `keterangan`) VALUES
-(1, '2020-07-02 11:46:01', 200000, 'beli buku', ''),
-(2, '2020-12-12 17:00:00', 5000, 'beli bensin', ''),
-(3, '2020-12-13 17:00:00', 1, 'beli rokok', ''),
-(4, '2020-12-15 17:00:00', 1000000, 'bayar hutang ke dani', ''),
-(5, '2020-12-15 17:00:00', 2, 'bayar hutang ke abah', ''),
-(6, '2020-12-15 17:00:00', 4, 'bayar hutang ke pak danu', ''),
-(7, '2020-12-15 17:00:00', 6, 'bayar hutang ke babi', ''),
-(8, '2020-12-15 17:00:00', 14, 'jajan', ''),
-(9, '2020-12-18 17:00:00', 1000000, 'beli emas', ''),
-(10, '2020-12-18 17:00:00', 2000000, 'beli emas', ''),
-(11, '2020-12-18 17:00:00', 3000000, 'beli emas', '');
+(12, '2021-01-07 17:00:00', 20000, 'beli bensin pertamax', ''),
+(14, '2021-01-07 17:00:00', 29000, 'beli pupuk cair Aqua Segar: Lebat dan Cerah', ''),
+(15, '2021-01-07 17:00:00', 100000, 'untuk ummi', ''),
+(16, '2021-01-09 17:00:00', 42000, 'jajan sampoerna kretek 2 bungkus, garpit 1/2 bungkus, creamy latte 2 saset', 'garpit untuk pak danu'),
+(17, '2021-01-09 17:00:00', 20000, 'beli socket toren dan socket drat luar', 'untuk benerin bak mixer kaporit'),
+(18, '2021-01-09 17:00:00', 15000, 'beli ikan mas kecil', 'untuk pakan arwana'),
+(19, '2021-01-09 17:00:00', 20000, 'beli sampoerna kretek sebungkus dan creamy latte 2', ''),
+(20, '2021-01-10 17:00:00', 38500, 'beli sampoerna kretek 2 bungkus, creamy latte 2, kapal api 2', 'kapal api untuk pak danu'),
+(21, '2021-01-10 17:00:00', 10000, 'beli batagor', ''),
+(22, '2021-01-11 17:00:00', 28000, 'beli sampoerna kretek 2 bungkus, garpit 1/2', 'garpit untuk pak danu'),
+(23, '2021-01-11 17:00:00', 15000, 'beli baso tahu 3 bungkus @ 5000', 'bagi-bagi sama galing dan pak danu'),
+(24, '2021-01-12 17:00:00', 82000, 'beli seperangkat CO2 + ongkos kirim', 'untuk aquascape'),
+(25, '2021-01-13 17:00:00', 34500, 'beli sampoerna kretek 2 bungkus, creamy latte 2, kapal api 2', ''),
+(26, '2021-01-14 17:00:00', 20000, 'beli bensin pertamax', ''),
+(27, '2021-01-14 17:00:00', 38000, 'beli sampoerna kretek 2 bungkus, good day, basreng', ''),
+(28, '2021-01-14 17:00:00', 22000, 'beli guppy 2, corydoras 2, parkir', ''),
+(29, '2021-01-15 17:00:00', 38000, 'beli sampoerna kretek 2 bungkus, creamy latte 4', ''),
+(30, '2021-01-15 17:00:00', 5000, 'beli baso ikan', ''),
+(31, '2021-01-16 17:00:00', 42000, 'beli sampoerna kretek 2 bungkus, creamy latte 4, indomie goreng 2', ''),
+(32, '2021-01-17 17:00:00', 30000, 'beli sampoerna kretek 2 bungkus', 'kembaliannya ilang, 2000 rupiah'),
+(33, '2021-01-18 17:00:00', 22000, 'bayar hutang ke Viska', ''),
+(34, '2021-01-18 17:00:00', 151000, 'isi saldo link aja untuk bayar kartu halo', ''),
+(35, '2021-01-19 17:00:00', 30000, 'beli sampoerna kretek 2 bungkus, creamy latte 1', ''),
+(36, '2021-01-19 17:00:00', 5000, 'beli filter mat', 'untuk aquascape'),
+(37, '2021-01-19 17:00:00', 21000, 'beli aqua galon', ''),
+(38, '2021-01-19 17:00:00', 38000, 'beli sampoerna kretek 2 bungkus, creamy latte 2, ultra coklat 1', '');
 
 -- --------------------------------------------------------
 
@@ -158,8 +164,7 @@ CREATE TABLE `piutang` (
 --
 
 INSERT INTO `piutang` (`id`, `tanggal`, `nominal`, `kepada`, `keterangan`) VALUES
-(1, '2020-06-29 15:54:21', 1000000, 'Pa Ahmad', ''),
-(2, '2020-06-29 15:54:21', 15000, 'Dendy', '');
+(3, '2021-01-07 21:26:22', 125000, 'Danny', '');
 
 -- --------------------------------------------------------
 
@@ -178,7 +183,21 @@ CREATE TABLE `saldo` (
 --
 
 INSERT INTO `saldo` (`id`, `saldo`, `tanggal`) VALUES
-(1, -3242312, '2020-12-18 17:00:00');
+(1, 1386000, '2021-01-19 17:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tabungan`
+--
+
+CREATE TABLE `tabungan` (
+  `id` int(50) NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `nabung` int(11) NOT NULL,
+  `narik` int(11) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -227,6 +246,12 @@ ALTER TABLE `saldo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tabungan`
+--
+ALTER TABLE `tabungan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -240,7 +265,7 @@ ALTER TABLE `akun`
 -- AUTO_INCREMENT for table `emas`
 --
 ALTER TABLE `emas`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `hutang`
@@ -252,25 +277,31 @@ ALTER TABLE `hutang`
 -- AUTO_INCREMENT for table `pemasukan`
 --
 ALTER TABLE `pemasukan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pengeluaran`
 --
 ALTER TABLE `pengeluaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `piutang`
 --
 ALTER TABLE `piutang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `saldo`
 --
 ALTER TABLE `saldo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tabungan`
+--
+ALTER TABLE `tabungan`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

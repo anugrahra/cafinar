@@ -53,7 +53,7 @@ class Hutang extends Controller
         header('Location: ' . BASEURL . '/hutang');
         exit;
       } else {
-        Flasher::setFlash('success', 'Saldo', 'gagal', 'dikurangi');
+        Flasher::setFlash('success', 'Saldo', 'gagal', 'ditambahkan');
         header('Location: ' . BASEURL . '/hutang');
         exit;
       }

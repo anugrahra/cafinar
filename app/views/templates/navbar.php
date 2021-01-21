@@ -59,6 +59,16 @@
             <a class="dropdown-item" href="<?= BASEURL; ?>/emas/info">Info</a>
           </div>
         </div>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tabungan
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="<?= BASEURL; ?>/tabungan">Buku Tabungan</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/tabungan/nabung">Nabung</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/tabungan/narik">Narik</a>
+          </div>
+        </div>
         <a class="nav-item nav-link" href="<?= BASEURL; ?>/analisa">Analisa</a>
         <a class="nav-item nav-link text-danger" href="<?= BASEURL; ?>/auth/signout">Logout</a>
       </div>
