@@ -17,7 +17,7 @@
       </a>
       <a href="<?= BASEURL; ?>/reksadana" class="list-group-item list-group-item-action shadow p-3 rounded">
         <h4 class="text-dark font-weight-bold">Investasi Reksadana</h4>
-        <h1 class="text-secondary font-weight-bold">Rp <?= number_format(99999, 2); ?></h1>
+        <h1 class="text-secondary font-weight-bold">Rp <?= number_format($data['reksadana']['total'], 2); ?></h1>
       </a>
       <a href="<?= BASEURL; ?>/emas" class="list-group-item list-group-item-action shadow p-3 rounded">
         <h4 class="text-dark font-weight-bold">Emas</h4>

@@ -11,6 +11,7 @@ class Beranda extends Controller
     $data['emas'] = $this->model('Emas_model')->showTotal();
     $data['hutang'] = $this->model('Hutang_model')->showTotal();
     $data['piutang'] = $this->model('Piutang_model')->showTotal();
+    $data['reksadana'] = $this->model('Reksadana_model')->showTotal();
     $this->view('templates/header', $data);
     $this->view('templates/navbar');
     $this->view('beranda/index', $data);

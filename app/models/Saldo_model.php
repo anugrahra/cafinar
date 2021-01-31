@@ -26,6 +26,10 @@ class Saldo_model
       if ($data['narik'] != 0) {
         $data['nominal'] = $data['narik'];
       }
+    } else if (isset($data['jual'])) {
+      if ($data['jual'] != 0) {
+        $data['nominal'] = $data['jual'];
+      }
     }
 
     $query  = "UPDATE " . $this->table . " SET saldo = ($saldo + :pemasukan), tanggal = :tanggal WHERE id = 1";
@@ -46,6 +50,10 @@ class Saldo_model
     if (isset($data['nabung'])) {
       if ($data['nabung'] != 0) {
         $data['nominal'] = $data['nabung'];
+      }
+    } else if (isset($data['invest'])) {
+      if ($data['invest'] != 0) {
+        $data['nominal'] = $data['invest'];
       }
     }
 

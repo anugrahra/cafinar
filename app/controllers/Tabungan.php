@@ -65,7 +65,7 @@ class Tabungan extends Controller
           exit;
         } else {
           Flasher::setFlash('success', 'Saldo', 'gagal', 'dikurangi');
-          header('Location: ' . BASEURL . '/piutang');
+          header('Location: ' . BASEURL . '/tabungan');
           exit;
         }
       } else {
