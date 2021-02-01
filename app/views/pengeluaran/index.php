@@ -3,13 +3,16 @@
     <h3>PENGELUARAN</h3>
   </div>
   <div class="col text-right">
-    <h3 class="text-success">Saldo: <?= number_format($data['saldo']['saldo']); ?></h3>
+    <h3 class="text-success">Saldo: Rp <?= number_format($data['saldo']['saldo']); ?></h3>
   </div>
 </div>
 
 <div class="row">
   <div class="col">
-    <h4><?= $data['bulan'] ?> <?= $data['tahun'] ?></h4>
+    <h4>
+      <?= $data['bulan'] ?> <?= $data['tahun'] ?>
+      <span class="text-danger">(Rp <?= number_format($data['total']['total']); ?>)<span>
+    </h4>
   </div>
   <div class="col d-flex justify-content-end">
     <form class="form-inline" method="POST" action="<?= BASEURL; ?>/pengeluaran/index">

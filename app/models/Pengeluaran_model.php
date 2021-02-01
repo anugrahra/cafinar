@@ -21,6 +21,29 @@ class Pengeluaran_model
     return $this->db->resultSet();
   }
 
+  public function showTotalPengeluaranByBulan($data = [])
+  {
+    if (isset($data['tahun'])) {
+      $explode = explode('|', $data['bulan']);
+      $bulan = $explode[0];
+      $tahun = $data['tahun'];
+    } else {
+      $bulan = (int)date('m');
+      $tahun = (int)date('Y');
+    }
+
+    $this->db->query("SELECT SUM(nominal) AS total FROM " . $this->table . "
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC");
+
+    $this->db->bind('bulan', $bulan);
+    $this->db->bind('tahun', $tahun);
+
+    return $this->db->single();
+  }
+
   public function getPengeluaranByDate($data)
   {
     $explode = explode('|', $data['bulan']);

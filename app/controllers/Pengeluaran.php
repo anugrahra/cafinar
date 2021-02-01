@@ -13,6 +13,7 @@ class Pengeluaran extends Controller
     $data['tahun'] = date('Y');
     $data['pengeluaran'] = $this->model('Pengeluaran_model')->showCurrentMonthPengeluaran();
     $data['saldo'] = $this->model('Saldo_model')->showSaldo();
+    $data['total'] = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulan();
 
     if (isset($_POST['bulan'])) {
       if ($this->model('Pengeluaran_model')->getPengeluaranByDate($_POST) > 0) {
@@ -21,6 +22,7 @@ class Pengeluaran extends Controller
         $data['bulan'] = $bulan;
         $data['tahun'] = $_POST['tahun'];
         $data['pengeluaran'] = $this->model('Pengeluaran_model')->showPengeluaranByDate($_POST);
+        $data['total'] = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulan($_POST);
       } else {
         Flasher::setFlash('danger', 'Pengeluaran', 'tidak', 'ditemukan');
         header('Location: ' . BASEURL . '/pengeluaran');
