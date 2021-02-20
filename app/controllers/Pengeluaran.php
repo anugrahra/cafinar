@@ -37,6 +37,18 @@ class Pengeluaran extends Controller
     $this->view('templates/footer');
   }
 
+  public function statistik()
+  {
+    $data['title'] = 'STATISTIK PENGELUARAN | ' . $this->title;
+    $data['bulan'] = date('F');
+    $data['tahun'] = date('Y');
+    $data['saldo'] = $this->model('Saldo_model')->showSaldo();
+    $this->view('templates/header', $data);
+    $this->view('templates/navbar');
+    $this->view('pengeluaran/statistik', $data);
+    $this->view('templates/footer');
+  }
+
   public function tambah()
   {
     $data['title'] = 'TAMBAH PENGELUARAN | ' . $this->title;

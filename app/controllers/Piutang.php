@@ -83,7 +83,7 @@ class Piutang extends Controller
         exit;
       }
     } else {
-      Flasher::setFlash('danger', 'Piutang', 'gagal', 'dibayar');
+      Flasher::setFlash('success', 'Tidak', 'ada', 'piutang');
       header('Location: ' . BASEURL . '/piutang');
       exit;
     }

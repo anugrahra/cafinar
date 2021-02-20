@@ -44,16 +44,48 @@ class Pengeluaran_model
     return $this->db->single();
   }
 
+  public function defaultPengeluaranPerHari()
+  {
+    $this->db->query("SELECT DAY(tanggal) AS day, SUM(nominal) AS nominal FROM " . $this->table . "
+    WHERE MONTH(tanggal) = MONTH(CURRENT_DATE())
+    AND
+    YEAR(tanggal) = YEAR(CURRENT_DATE())
+    GROUP BY YEAR(tanggal), MONTH(tanggal), DAY(tanggal)");
+
+    return $this->db->resultSet();
+  }
+
+  public function showPengeluaranPerHari($data)
+  {
+    $this->db->query("SELECT DAY(tanggal) AS day, SUM(nominal) AS nominal FROM " . $this->table . "
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    GROUP BY YEAR(tanggal), MONTH(tanggal), DAY(tanggal)");
+
+    $this->db->bind('bulan', $data['bulan']);
+    $this->db->bind('tahun', $data['tahun']);
+
+    return $this->db->resultSet();
+  }
+
+  public function showPengeluaranPerBulan()
+  {
+    $this->db->query("SELECT MONTHNAME(tanggal) AS month, SUM(nominal) AS nominal FROM " . $this->table . " WHERE YEAR(tanggal) = YEAR(CURRENT_DATE()) GROUP BY YEAR(tanggal), MONTH(tanggal)");
+
+    return $this->db->resultSet();
+  }
+
   public function getPengeluaranByDate($data)
   {
     $explode = explode('|', $data['bulan']);
     $bulan = $explode[0];
 
     $query = "SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = :bulan
-     AND
-     YEAR(tanggal) = :tahun
-     ORDER BY tanggal DESC";
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC";
 
     $this->db->query($query);
     $this->db->bind('bulan', $bulan);
@@ -66,10 +98,10 @@ class Pengeluaran_model
   public function showPengeluaranByDate($data)
   {
     $query = "SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = :bulan
-     AND
-     YEAR(tanggal) = :tahun
-     ORDER BY tanggal DESC";
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC";
 
     $this->db->query($query);
     $this->db->bind('bulan', $data['bulan']);

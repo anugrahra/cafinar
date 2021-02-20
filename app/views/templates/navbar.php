@@ -26,6 +26,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="<?= BASEURL; ?>/pengeluaran">Daftar Pengeluaran</a>
             <a class="dropdown-item" href="<?= BASEURL; ?>/pengeluaran/tambah">Tambah Pengeluaran</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/pengeluaran/statistik">Statistik</a>
           </div>
         </div>
         <div class="nav-item dropdown">
@@ -74,12 +75,13 @@
             Reksadana
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="<?= BASEURL; ?>/reksadana">Daftar Investasi</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/reksadana">Log Investasi</a>
             <a class="dropdown-item" href="<?= BASEURL; ?>/reksadana/invest">Invest</a>
             <a class="dropdown-item" href="<?= BASEURL; ?>/reksadana/jual">Jual</a>
           </div>
         </div>
         <a class="nav-item nav-link" href="<?= BASEURL; ?>/analisa">Analisa</a>
+        <a class="nav-item nav-link" href="<?= BASEURL; ?>/statistik">Stats</a>
         <a class="nav-item nav-link text-danger" href="<?= BASEURL; ?>/auth/signout">Logout</a>
       </div>
     </div>

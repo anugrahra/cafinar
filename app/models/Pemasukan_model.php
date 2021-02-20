@@ -21,6 +21,29 @@ class Pemasukan_model
     return $this->db->resultSet();
   }
 
+  public function showTotalPemasukanByBulan($data = [])
+  {
+    if (isset($data['tahun'])) {
+      $explode = explode('|', $data['bulan']);
+      $bulan = $explode[0];
+      $tahun = $data['tahun'];
+    } else {
+      $bulan = (int)date('m');
+      $tahun = (int)date('Y');
+    }
+
+    $this->db->query("SELECT SUM(nominal) AS total FROM " . $this->table . "
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC");
+
+    $this->db->bind('bulan', $bulan);
+    $this->db->bind('tahun', $tahun);
+
+    return $this->db->single();
+  }
+
   public function getPemasukanByDate($data)
   {
     $explode = explode('|', $data['bulan']);
@@ -52,6 +75,13 @@ class Pemasukan_model
     $this->db->bind('bulan', $data['bulan']);
     $this->db->bind('tahun', $data['tahun']);
     $this->db->execute();
+
+    return $this->db->resultSet();
+  }
+
+  public function showPemasukanPerBulan()
+  {
+    $this->db->query("SELECT MONTHNAME(tanggal) AS month, SUM(nominal) AS nominal FROM " . $this->table . " WHERE YEAR(tanggal) = YEAR(CURRENT_DATE()) GROUP BY YEAR(tanggal), MONTH(tanggal)");
 
     return $this->db->resultSet();
   }

@@ -9,7 +9,10 @@
 
 <div class="row">
   <div class="col">
-    <h4><?= $data['bulan'] ?> <?= $data['tahun'] ?></h4>
+    <h4>
+      <?= $data['bulan'] ?> <?= $data['tahun'] ?>
+      <span class="text-success">(Rp <?= number_format($data['total']['total']); ?>)<span>
+    </h4>
   </div>
   <div class="col d-flex justify-content-end">
     <form class="form-inline" method="POST" action="<?= BASEURL; ?>/pemasukan/index">

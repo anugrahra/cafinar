@@ -11,11 +11,11 @@
   <div class="col">
     <h4>
       <?= $data['bulan'] ?> <?= $data['tahun'] ?>
-      <span class="text-danger">(Rp <?= number_format($data['total']['total']); ?>)<span>
+      <span class="text-danger">(Rp <?= number_format($data['total']['total']); ?>)</span>
     </h4>
   </div>
   <div class="col d-flex justify-content-end">
-    <form class="form-inline" method="POST" action="<?= BASEURL; ?>/pengeluaran/index">
+    <form class="form-inline" method="POST" action="<?= BASEURL; ?>/pengeluaran/index" id="formbulanpengeluaran">
       <label class="my-1 mr-2 sr-only" for="bulan">Bulan</label>
       <select class="custom-select my-1 mr-sm-2" id="bulan" name="bulan" required>
         <option value="00">-- Pilih Bulan --</option>
@@ -34,7 +34,7 @@
       </select>
       <label class="my-1 mr-2 sr-only" for="tahun">Tahun</label>
       <input type="number" class="custom-select my-1 mr-sm-2" id="tahun" name="tahun" placeholder="tahun" value="<?= $data['tahun']; ?>" required>
-      <button class="btn btn-primary form-control mr-sm-2">Lihat</button>
+      <button class="btn btn-primary form-control mr-sm-2" type="submit">Lihat</button>
     </form>
   </div>
 </div>

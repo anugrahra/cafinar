@@ -13,6 +13,7 @@ class Pemasukan extends Controller
     $data['tahun'] = date('Y');
     $data['pemasukan'] = $this->model('Pemasukan_model')->showCurrentMonthPemasukan();
     $data['saldo'] = $this->model('Saldo_model')->showSaldo();
+    $data['total'] = $this->model('Pemasukan_model')->showTotalPemasukanByBulan();
 
     if (isset($_POST['bulan'])) {
       if ($this->model('Pemasukan_model')->getPemasukanByDate($_POST) > 0) {
@@ -21,6 +22,7 @@ class Pemasukan extends Controller
         $data['bulan'] = $bulan;
         $data['tahun'] = $_POST['tahun'];
         $data['pemasukan'] = $this->model('Pemasukan_model')->showPemasukanByDate($_POST);
+        $data['total'] = $this->model('Pemasukan_model')->showTotalPemasukanByBulan($_POST);
       } else {
         Flasher::setFlash('danger', 'Pemasukan', 'tidak', 'ditemukan');
         header('Location: ' . BASEURL . '/pemasukan');

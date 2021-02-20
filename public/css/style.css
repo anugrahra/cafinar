@@ -45,6 +45,14 @@
 
 /* END OF CURSOR FOR SALDO */
 
+/* PIE CHART CANVAS */
+#piechartcontainer {
+  margin: auto;
+  width: 40%;
+}
+
+/* END OF PIE CHART CANVAS */
+
 /* FOOTER */
 footer {
   position: absolute;

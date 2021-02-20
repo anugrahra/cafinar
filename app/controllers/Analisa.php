@@ -15,4 +15,49 @@ class Analisa extends Controller
     $this->view('analisa/index', $data);
     $this->view('templates/footer');
   }
+
+  public function chartPemasukanPengeluaran()
+  {
+    header('Content-Type: application/json');
+    $pemasukan = $this->model('Pemasukan_model')->showTotalPemasukanByBulan();
+    $pengeluaran = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulan();
+
+    $cashflow = ["pemasukan" => $pemasukan['total'], "pengeluaran" => $pengeluaran['total']];
+
+    echo json_encode($cashflow);
+  }
+
+  public function chartPengeluaranPerHari()
+  {
+    header('Content-Type: application/json');
+    echo json_encode($this->model('Pengeluaran_model')->defaultPengeluaranPerHari());
+  }
+
+  public function chartPengeluaranPerHariByBulan()
+  {
+    echo json_encode($this->model('Pengeluaran_model')->showPengeluaranPerHari($_POST));
+  }
+
+  public function chartPengeluaranPerBulan()
+  {
+    header('Content-Type: application/json');
+    echo json_encode($this->model('Pengeluaran_model')->showPengeluaranPerBulan());
+  }
+
+  public function chartPemasukanPerBulan()
+  {
+    header('Content-Type: application/json');
+    echo json_encode($this->model('Pemasukan_model')->showPemasukanPerBulan());
+  }
+
+  public function chartPemasukanPengeluaranPerBulan()
+  {
+    header('Content-Type: application/json');
+    $pemasukan = $this->model('Pemasukan_model')->showPemasukanPerBulan();
+    $pengeluaran = $this->model('Pengeluaran_model')->showPengeluaranPerBulan();
+
+    $cashflow = ["pemasukan" => $pemasukan, "pengeluaran" => $pengeluaran];
+
+    echo json_encode($cashflow);
+  }
 }

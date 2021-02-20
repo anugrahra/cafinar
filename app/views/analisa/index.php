@@ -18,3 +18,13 @@
     </div>
   </div>
 </div>
+<div class="row mt-3">
+  <div class="col">
+    <div class="list-group list-group-horizontal-md text-center saldo">
+      <div class="list-group-item list-group-item-action shadow p-3 rounded">
+        <div id="piechartcontainer">
+          <canvas id="piechart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>

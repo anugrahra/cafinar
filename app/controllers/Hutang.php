@@ -83,7 +83,7 @@ class Hutang extends Controller
         exit;
       }
     } else {
-      Flasher::setFlash('danger', 'Hutang', 'gagal', 'dibayar');
+      Flasher::setFlash('success', 'Tidak', 'ada', 'hutang');
       header('Location: ' . BASEURL . '/hutang');
       exit;
     }
