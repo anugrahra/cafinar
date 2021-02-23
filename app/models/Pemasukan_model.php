@@ -100,4 +100,29 @@ class Pemasukan_model
 
     return $this->db->rowCount();
   }
+
+  public function defaultPemasukanPerHari()
+  {
+    $this->db->query("SELECT DAY(tanggal) AS day, SUM(nominal) AS nominal FROM " . $this->table . "
+    WHERE MONTH(tanggal) = MONTH(CURRENT_DATE())
+    AND
+    YEAR(tanggal) = YEAR(CURRENT_DATE())
+    GROUP BY YEAR(tanggal), MONTH(tanggal), DAY(tanggal)");
+
+    return $this->db->resultSet();
+  }
+
+  public function showPemasukanPerHari($data)
+  {
+    $this->db->query("SELECT DAY(tanggal) AS day, SUM(nominal) AS nominal FROM " . $this->table . "
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    GROUP BY YEAR(tanggal), MONTH(tanggal), DAY(tanggal)");
+
+    $this->db->bind('bulan', $data['bulan']);
+    $this->db->bind('tahun', $data['tahun']);
+
+    return $this->db->resultSet();
+  }
 }

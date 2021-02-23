@@ -1,9 +1,22 @@
-// when document ready, show the pie
-$(document).ready(function() {
-  showPie();
-  showPengeluaranPerHari();
-  showPemasukanPengeluaranPerBulan();
-});
+// when document ready, show the chart
+if (window.location == 'http://localhost/cafinar/analisa') {
+  $(document).ready(function() {
+    showPie();
+  });
+} else if (window.location == 'http://localhost/cafinar/statistik') {
+  $(document).ready(function() {
+    showPemasukanPengeluaranPerBulan();
+  });
+} else if (window.location == 'http://localhost/cafinar/pemasukan/statistik') {
+  $(document).ready(function() {
+    showPemasukanPerHari();
+  });
+} else if (window.location == 'http://localhost/cafinar/pengeluaran/statistik') {
+  $(document).ready(function() {
+    showPengeluaranPerHari();
+  });
+}
+
 
 function showPie() {
   {
@@ -112,6 +125,88 @@ $("#lihatpengeluaranperhari").on('click', function () {
 
       const ctx = $("#chartpengeluaranperhari");
       let chartPengeluaranPerHari = new Chart (ctx, {
+        type: 'bar',
+        data: chartdata
+      });
+    }
+  });
+});
+
+function showPemasukanPerHari() {
+  {
+    $.post("http://localhost/cafinar/analisa/chartpemasukanperhari", function(data) {
+      let day = [];
+      let nominal = [];
+
+      for (let i in data) {
+        day.push(data[i].day);
+        nominal.push(data[i].nominal);
+      }
+
+      let chartdata = {
+        labels: day,
+        datasets: [{
+          label: 'Pemasukan (Rp)',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          data: nominal
+        }]
+      };
+
+      const ctx = $("#chartpemasukanperhari");
+      let chartPemasukanPerHari = new Chart (ctx, {
+        type: 'bar',
+        data: chartdata,
+        options : {
+          scales : {
+            yAxes : [{
+              ticks: {
+                beginAtZero : true
+              }
+            }]
+          }
+        }
+      });
+    });
+  }
+}
+
+$("#lihatpemasukanperhari").on('click', function () {
+  let explode = $("#bulan").val().split('|');
+  
+  let bulan = explode[0];
+  let namabulan = explode[1];
+  let tahun = $("#tahun").val();
+  
+  $.ajax({
+    method: "post",
+    url: "http://localhost/cafinar/analisa/chartpemasukanperharibybulan",
+    data: {bulan : bulan, tahun : tahun},
+    dataType: "json",
+    success: function (data) {
+      $("#namabulan").html(namabulan);
+      $("#namatahun").html(tahun);
+
+      let day = [];
+      let nominal = [];
+
+      for (let i in data) {
+        day.push(data[i].day);
+        nominal.push(data[i].nominal);
+      }
+
+      let chartdata = {
+        labels: day,
+        datasets: [{
+          label: 'Pemasukan (Rp)',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          data: nominal
+        }]
+      };
+
+      const ctx = $("#chartpemasukanperhari");
+      let chartPemasukanPerHari = new Chart (ctx, {
         type: 'bar',
         data: chartdata
       });

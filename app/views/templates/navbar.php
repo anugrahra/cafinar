@@ -17,6 +17,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="<?= BASEURL; ?>/pemasukan">Daftar Pemasukan</a>
             <a class="dropdown-item" href="<?= BASEURL; ?>/pemasukan/tambah">Tambah Pemasukan</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/pemasukan/statistik">Statistik</a>
           </div>
         </div>
         <div class="nav-item dropdown">

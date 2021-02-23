@@ -27,6 +27,17 @@ class Analisa extends Controller
     echo json_encode($cashflow);
   }
 
+  public function chartPemasukanPerHari()
+  {
+    header('Content-Type: application/json');
+    echo json_encode($this->model('Pemasukan_model')->defaultPemasukanPerHari());
+  }
+
+  public function chartPemasukanPerHariByBulan()
+  {
+    echo json_encode($this->model('Pemasukan_model')->showPemasukanPerHari($_POST));
+  }
+
   public function chartPengeluaranPerHari()
   {
     header('Content-Type: application/json');
