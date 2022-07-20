@@ -5,8 +5,8 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="author" content="dekadensiotak">
-  <meta name="description" content="Pemakaian Nol Pelanggan">
+  <meta name="author" content="Anugrah Ramadhan">
+  <meta name="description" content="Catatan Finansial Anugrah Ramadhan">
 
   <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/622aa0f466.js" crossorigin="anonymous"></script>

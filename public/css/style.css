@@ -38,6 +38,13 @@
 
 /* END OF LOGIN */
 
+/* MAIN SECTION */
+main {
+  width: auto;
+}
+
+/* END OF MAIN SECTION */
+
 /* CURSOR FOR SALDO */
 .saldo {
   cursor: cell;

@@ -45,8 +45,8 @@
             Hutang
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="<?= BASEURL; ?>/hutang">Daftar Hutang</a>
-            <a class="dropdown-item" href="<?= BASEURL; ?>/hutang/tambah">Tambah Hutang</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/hutang">Daftar Utang</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/hutang/tambah">Tambah Utang</a>
             <a class="dropdown-item" href="<?= BASEURL; ?>/hutang/bayar">Bayar</a>
           </div>
         </div>

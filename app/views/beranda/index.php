@@ -34,7 +34,7 @@
         <h1 class="text-primary font-weight-bold">Rp <?= number_format($data['piutang']['total'], 2); ?></h1>
       </a>
       <a href="<?= BASEURL; ?>/hutang" class="list-group-item list-group-item-action shadow p-3 rounded">
-        <h4 class="text-dark font-weight-bold">Hutang</h4>
+        <h4 class="text-dark font-weight-bold">Utang</h4>
         <h1 class="text-danger font-weight-bold">Rp <?= number_format($data['hutang']['total'], 2); ?></h1>
       </a>
     </div>

@@ -52,6 +52,7 @@
         <tr class="text-center">
           <th scope="col">No</th>
           <th scope="col">Nominal</th>
+          <th scope="col">Kategori</th>
           <th scope="col">Tujuan</th>
           <th scope="col">Tanggal</th>
           <th scope="col">Ket.</th>
@@ -66,6 +67,7 @@
             <td><?= $no++; ?></td>
             <td><?= number_format($pengeluaran['nominal']); ?></td>
             <td><?= $pengeluaran['tujuan']; ?></td>
+            <td><?= $pengeluaran['kategori']; ?></td>
             <td><?= date('d F Y', strtotime($pengeluaran['tanggal'])); ?></td>
             <td><?= $pengeluaran['keterangan']; ?></td>
           </tr>

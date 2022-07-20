@@ -22,6 +22,20 @@
         <input type="number" class="form-control" id="nominal" name="nominal" required>
       </div>
       <div class="form-group">
+        <label for="kategori">Kategori*</label>
+        <select class="form-control" id="kategori" name="kategori" required>
+          <option value="Makan / Minum">Makan / Minum</option>
+          <option value="Transpor">Transpor</option>
+          <option value="Rokok">Rokok</option>
+          <option value="Olahraga">Olahraga</option>
+          <option value="Hobi">Hobi</option>
+          <option value="Buku">Buku</option>
+          <option value="Grooming">Grooming</option>
+          <option value="Fashion">Fashion</option>
+          <option value="Lain-lain">Lain-lain</option>
+        </select>
+      </div>
+      <div class="form-group">
         <label for="tujuan">Tujuan*</label>
         <input type="text" class="form-control" id="tujuan" name="tujuan" required>
       </div>

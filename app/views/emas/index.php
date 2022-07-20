@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <h3>INVESTASI EMAS <span class="text-warning">(<?= number_format($data['total']['total']); ?> gr)</span></h3>
+    <h3>INVESTASI EMAS <span class="text-warning">(<?= number_format($data['total']['total'], 1); ?> gr)</span></h3>
   </div>
 </div>
 
@@ -27,7 +27,7 @@
         ?>
           <tr>
             <td><?= $no++; ?></td>
-            <td><?= number_format($emas['berat']); ?> gr</td>
+            <td><?= number_format($emas['berat'], 1); ?> gr</td>
             <td><?= date('d F Y', strtotime($emas['tgl_beli'])); ?></td>
           </tr>
         <?php endforeach; ?>

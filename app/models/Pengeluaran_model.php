@@ -76,6 +76,13 @@ class Pengeluaran_model
     return $this->db->resultSet();
   }
 
+  public function showPengeluaranPerKategori()
+  {
+    $this->db->query("SELECT MONTHNAME(tanggal) AS month, SUM(nominal) AS nominal FROM " . $this->table . " WHERE YEAR(tanggal) = YEAR(CURRENT_DATE()) GROUP BY kategori");
+
+    return $this->db->resultSet();
+  }
+
   public function getPengeluaranByDate($data)
   {
     $explode = explode('|', $data['bulan']);
@@ -113,11 +120,12 @@ class Pengeluaran_model
 
   public function tambah($data)
   {
-    $query  = "INSERT INTO " . $this->table . " VALUES ('', :tanggal, :nominal, :tujuan, :keterangan)";
+    $query  = "INSERT INTO " . $this->table . " VALUES ('', :tanggal, :nominal, :kategori, :tujuan, :keterangan)";
 
     $this->db->query($query);
     $this->db->bind('tanggal', $data['tanggal']);
     $this->db->bind('nominal', $data['nominal']);
+    $this->db->bind('kategori', $data['kategori']);
     $this->db->bind('tujuan', $data['tujuan']);
     $this->db->bind('keterangan', $data['keterangan']);
 
