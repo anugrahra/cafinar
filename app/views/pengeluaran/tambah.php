@@ -32,6 +32,9 @@
           <option value="Buku">Buku</option>
           <option value="Grooming">Grooming</option>
           <option value="Fashion">Fashion</option>
+          <option value="Keluarga">Keluarga</option>
+          <option value="Infaq / Sodaqoh">Infaq / Sodaqoh</option>
+          <option value="Hiburan">Hiburan</option>
           <option value="Lain-lain">Lain-lain</option>
         </select>
       </div>

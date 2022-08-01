@@ -14,6 +14,7 @@ class Pengeluaran extends Controller
     $data['pengeluaran'] = $this->model('Pengeluaran_model')->showCurrentMonthPengeluaran();
     $data['saldo'] = $this->model('Saldo_model')->showSaldo();
     $data['total'] = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulan();
+    $data['average'] = $this->model('Pengeluaran_model')->showAveragePengeluaranByBulan();
 
     if (isset($_POST['bulan'])) {
       if ($this->model('Pengeluaran_model')->getPengeluaranByDate($_POST) > 0) {
@@ -43,6 +44,8 @@ class Pengeluaran extends Controller
     $data['bulan'] = date('F');
     $data['tahun'] = date('Y');
     $data['saldo'] = $this->model('Saldo_model')->showSaldo();
+    $data['total'] = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulan();
+    $data['sumkategori'] = $this->model('Pengeluaran_model')->showPengeluaranByKategoriByBulan();
     $this->view('templates/header', $data);
     $this->view('templates/navbar');
     $this->view('pengeluaran/statistik', $data);

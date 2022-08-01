@@ -12,6 +12,7 @@
     <h4>
       <?= $data['bulan'] ?> <?= $data['tahun'] ?>
       <span class="text-danger">(Rp <?= number_format($data['total']['total']); ?>)</span>
+      <span class="text-secondary">(Rp <?= number_format($data['average']['average']); ?>)</span>
     </h4>
   </div>
   <div class="col d-flex justify-content-end">

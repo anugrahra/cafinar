@@ -30,3 +30,33 @@
     <canvas id="chartpengeluaranperhari"></canvas>
   </div>
 </div>
+<div class="row mt-3">
+  <div class="col" id="kategori">
+    <div class="row">
+      <div class="col">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-dark">
+            <tr class="text-center">
+              <th scope="col">Kategori</th>
+              <th scope="col">Nominal</th>
+              <th scope="col">Persentase</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $total = (int)$data['total']['total'];
+            foreach ($data['sumkategori'] as $sumkategori) :
+              $persentase = (int)$sumkategori['totalNominal'] / $total * 100;
+            ?>
+              <tr>
+                <td><?= $sumkategori['kategori']; ?></td>
+                <td>Rp. <?= number_format($sumkategori['totalNominal']); ?></td>
+                <td><?= number_format($persentase, 1); ?> %</td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
