@@ -13,10 +13,10 @@ class Pemasukan_model
   public function showCurrentMonthPemasukan()
   {
     $this->db->query("SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = MONTH(CURRENT_DATE())
-     AND
-     YEAR(tanggal) = YEAR(CURRENT_DATE())
-     ORDER BY tanggal DESC");
+    WHERE MONTH(tanggal) = MONTH(CURRENT_DATE())
+    AND
+    YEAR(tanggal) = YEAR(CURRENT_DATE())
+    ORDER BY tanggal DESC");
 
     return $this->db->resultSet();
   }
@@ -50,10 +50,10 @@ class Pemasukan_model
     $bulan = $explode[0];
 
     $query = "SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = :bulan
-     AND
-     YEAR(tanggal) = :tahun
-     ORDER BY tanggal DESC";
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC";
 
     $this->db->query($query);
     $this->db->bind('bulan', $bulan);
@@ -66,10 +66,10 @@ class Pemasukan_model
   public function showPemasukanByDate($data)
   {
     $query = "SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = :bulan
-     AND
-     YEAR(tanggal) = :tahun
-     ORDER BY tanggal DESC";
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC";
 
     $this->db->query($query);
     $this->db->bind('bulan', $data['bulan']);
@@ -93,6 +93,21 @@ class Pemasukan_model
     $this->db->query($query);
     $this->db->bind('tanggal', $data['tanggal']);
     $this->db->bind('nominal', $data['nominal']);
+    $this->db->bind('sumber', $data['sumber']);
+    $this->db->bind('keterangan', $data['keterangan']);
+
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
+
+  public function tambahfromcicil($data)
+  {
+    $query  = "INSERT INTO " . $this->table . " VALUES ('', :tanggal, :nominal, :sumber, :keterangan)";
+
+    $this->db->query($query);
+    $this->db->bind('tanggal', $data['tglcicil']);
+    $this->db->bind('nominal', $data['jumlahcicilan']);
     $this->db->bind('sumber', $data['sumber']);
     $this->db->bind('keterangan', $data['keterangan']);
 

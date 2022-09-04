@@ -20,10 +20,7 @@ class Piutang_model
   public function showCurrentMonthPiutang()
   {
     $this->db->query("SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = MONTH(CURRENT_DATE())
-     AND
-     YEAR(tanggal) = YEAR(CURRENT_DATE())
-     ORDER BY tanggal DESC");
+    ORDER BY tanggal DESC");
 
     return $this->db->resultSet();
   }
@@ -34,10 +31,10 @@ class Piutang_model
     $bulan = $explode[0];
 
     $query = "SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = :bulan
-     AND
-     YEAR(tanggal) = :tahun
-     ORDER BY tanggal DESC";
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC";
 
     $this->db->query($query);
     $this->db->bind('bulan', $bulan);
@@ -50,10 +47,10 @@ class Piutang_model
   public function showPiutangByDate($data)
   {
     $query = "SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = :bulan
-     AND
-     YEAR(tanggal) = :tahun
-     ORDER BY tanggal DESC";
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC";
 
     $this->db->query($query);
     $this->db->bind('bulan', $data['bulan']);
@@ -70,7 +67,7 @@ class Piutang_model
     $this->db->query($query);
     $this->db->bind('tanggal', $data['tanggal']);
     $this->db->bind('nominal', $data['nominal']);
-    $this->db->bind('debitur', $data['debitur']);
+    $this->db->bind('debitur', $data['tujuan']);
     $this->db->bind('keterangan', $data['keterangan']);
 
     $this->db->execute();
@@ -93,6 +90,27 @@ class Piutang_model
     $this->db->query('DELETE FROM ' . $this->table . ' WHERE id=:id');
     $this->db->bind('id', $id);
 
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
+
+  public function getPiutangById($id)
+  {
+    $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id');
+    $this->db->bind('id', $id);
+
+    return $this->db->single();
+  }
+
+  public function cicil($data)
+  {
+    $query = "UPDATE " . $this->table . " SET nominal = (:nominal - :jumlahcicilan) WHERE id = :id";
+
+    $this->db->query($query);
+    $this->db->bind('id', $data['id']);
+    $this->db->bind('nominal', $data['nominal']);
+    $this->db->bind('jumlahcicilan', $data['jumlahcicilan']);
     $this->db->execute();
 
     return $this->db->rowCount();

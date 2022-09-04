@@ -23,7 +23,11 @@
       </div>
       <div class="form-group">
         <label for="sumber">Debitur*</label>
-        <input type="text" class="form-control" id="debitur" name="debitur" required>
+        <input type="text" class="form-control" id="tujuan" name="tujuan" required>
+        <!-- if debitur = 1 then tujuan = debitur -->
+      </div>
+      <div class="form-group">
+        <input type="text" class="d-none" id="kategori" name="kategori" value="Piutang" required>
       </div>
       <div class="form-group">
         <label for="keterangan">Keterangan</label>

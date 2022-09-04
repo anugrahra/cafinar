@@ -27,6 +27,6 @@
 <div class="row">
   <div class="col" id="statistik">
     <h4>Statistik Pemasukan per Hari, Bulan <span id="namabulan"><?= $data['bulan']; ?></span> Tahun <span id="namatahun"><?= $data['tahun']; ?></span></h4>
-    <canvas id="chartpemasukanperhari"></canvas>
+    <canvas id="chartpemasukanperhari" height="95%"></canvas>
   </div>
 </div>

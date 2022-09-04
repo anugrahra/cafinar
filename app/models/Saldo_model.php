@@ -30,6 +30,8 @@ class Saldo_model
       if ($data['jual'] != 0) {
         $data['nominal'] = $data['jual'];
       }
+    } else if (isset($data['jumlahcicilan'])) {
+      $data['nominal'] = $data['jumlahcicilan'];
     }
 
     $query  = "UPDATE " . $this->table . " SET saldo = ($saldo + :pemasukan), tanggal = :tanggal WHERE id = 1";

@@ -48,6 +48,7 @@ class Hutang extends Controller
   public function prosesTambah()
   {
     if ($this->model('Hutang_model')->tambah($_POST) > 0) {
+      // ini harus dibenerin
       if ($this->model('Saldo_model')->masuk($_POST) > 0) {
         Flasher::setFlash('success', 'Hutang', 'berhasil', 'ditambahkan');
         header('Location: ' . BASEURL . '/hutang');

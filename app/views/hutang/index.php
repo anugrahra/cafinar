@@ -73,6 +73,7 @@
                 <input type="date" value="<?= date('Y-m-d'); ?>" name="tanggal" class="d-none">
                 <input type="text" value="bayar hutang ke <?= $hutang['sumber']; ?>" name="tujuan" class="d-none">
                 <input type="text" value="" name="keterangan" class="d-none">
+                <input type="text" value="Utang" name="kategori" class="d-none">
                 <button class="btn btn-success" onclick="confirm('Sure?')">bayar</button>
               </form>
             </td>

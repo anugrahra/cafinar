@@ -7,6 +7,7 @@ class Controller
   public function __construct()
   {
     date_default_timezone_set("Asia/Jakarta");
+    setlocale(LC_ALL, 'id_ID.utf8');
   }
 
   public function view($view, $data = [])

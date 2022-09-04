@@ -20,10 +20,10 @@ class Reksadana_model
   public function showCurrentMonthReksadana()
   {
     $this->db->query("SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = MONTH(CURRENT_DATE())
-     AND
-     YEAR(tanggal) = YEAR(CURRENT_DATE())
-     ORDER BY tanggal DESC");
+    WHERE MONTH(tanggal) = MONTH(CURRENT_DATE())
+    AND
+    YEAR(tanggal) = YEAR(CURRENT_DATE())
+    ORDER BY tanggal DESC");
 
     return $this->db->resultSet();
   }
@@ -34,10 +34,10 @@ class Reksadana_model
     $bulan = $explode[0];
 
     $query = "SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = :bulan
-     AND
-     YEAR(tanggal) = :tahun
-     ORDER BY tanggal DESC";
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC";
 
     $this->db->query($query);
     $this->db->bind('bulan', $bulan);
@@ -50,10 +50,10 @@ class Reksadana_model
   public function showReksadanaByDate($data)
   {
     $query = "SELECT * FROM " . $this->table . "
-     WHERE MONTH(tanggal) = :bulan
-     AND
-     YEAR(tanggal) = :tahun
-     ORDER BY tanggal DESC";
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC";
 
     $this->db->query($query);
     $this->db->bind('bulan', $data['bulan']);

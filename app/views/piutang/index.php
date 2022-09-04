@@ -54,6 +54,7 @@
           <th scope="col">Ket.</th>
           <th scope="col"></th>
           <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -78,7 +79,10 @@
               </form>
             </td>
             <td>
-              <a href="<?= BASEURL; ?>/piutang/ikhlaskan/<?= $piutang['id']; ?>" class="btn btn-warning">ikhlaskan</a>
+              <a href="<?= BASEURL; ?>/piutang/cicil/<?= $piutang['id']; ?>" class="btn btn-info">cicil</a>
+            </td>
+            <td>
+              <a href="<?= BASEURL; ?>/piutang/ikhlaskan/<?= $piutang['id']; ?>" class="btn btn-warning" onclick="confirm('Sure?')">ikhlaskan</a>
             </td>
           </tr>
         <?php endforeach; ?>

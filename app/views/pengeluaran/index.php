@@ -9,14 +9,45 @@
 
 <div class="row">
   <div class="col">
-    <h4>
-      <?= $data['bulan'] ?> <?= $data['tahun'] ?>
-      <span class="text-danger">(Rp <?= number_format($data['total']['total']); ?>)</span>
-      <span class="text-secondary">(Rp <?= number_format($data['average']['average']); ?>)</span>
-    </h4>
+    <h4><?= $data['bulan'] ?> <?= $data['tahun'] ?></h4>
+    <table>
+      <tr>
+        <td>
+          <h4>Total</h4>
+        </td>
+        <td>
+          <h4>&nbsp;:&nbsp;</h4>
+        </td>
+        <td>
+          <h4><span class="text-danger">Rp. <?= number_format($data['total']['total']); ?></span></h4>
+        </td>
+      </tr>
+      <tr class="<?= $data['hidepengeluaran']; ?>">
+        <td>
+          <h4>Rata-rata sampai hari ke-<?= date('d'); ?></h4>
+        </td>
+        <td>
+          <h4>&nbsp;:&nbsp;</h4>
+        </td>
+        <td>
+          <h4><span class="text-secondary">Rp. <?= number_format($data['ratapengeluaran']); ?></span></h4>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h4>Rata-rata per hari</h4>
+        </td>
+        <td>
+          <h4>&nbsp;:&nbsp;</h4>
+        </td>
+        <td>
+          <h4><span class="text-secondary">Rp. <?= number_format($data['ratapengeluaranbulanini']); ?></span></h4>
+        </td>
+      </tr>
+    </table>
   </div>
   <div class="col d-flex justify-content-end">
-    <form class="form-inline" method="POST" action="<?= BASEURL; ?>/pengeluaran/index" id="formbulanpengeluaran">
+    <form class="form-inline" method="POST" action="<?= BASEURL; ?>/pengeluaran" id="formbulanpengeluaran">
       <label class="my-1 mr-2 sr-only" for="bulan">Bulan</label>
       <select class="custom-select my-1 mr-sm-2" id="bulan" name="bulan" required>
         <option value="00">-- Pilih Bulan --</option>
@@ -53,8 +84,8 @@
         <tr class="text-center">
           <th scope="col">No</th>
           <th scope="col">Nominal</th>
-          <th scope="col">Kategori</th>
           <th scope="col">Tujuan</th>
+          <th scope="col">Kategori</th>
           <th scope="col">Tanggal</th>
           <th scope="col">Ket.</th>
         </tr>

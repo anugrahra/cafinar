@@ -44,6 +44,43 @@ class Pengeluaran_model
     return $this->db->single();
   }
 
+  public function showTotalPengeluaranByBulanLalunya($data = [])
+  {
+    if (isset($data['tahun'])) {
+      $explode = explode('|', $data['bulan']);
+      $bulan = $explode[0];
+      $tahun = $data['tahun'];
+    } else {
+      $bulan = (int)date('m');
+      $tahun = (int)date('Y');
+    }
+
+    $this->db->query("SELECT SUM(nominal) AS total FROM " . $this->table . "
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC");
+
+    $this->db->bind('bulan', $bulan - 1);
+    $this->db->bind('tahun', $tahun);
+
+    return $this->db->single();
+  }
+
+  public function showTotalPengeluaranBulanLalu()
+  {
+    $this->db->query("SELECT SUM(nominal) AS total FROM " . $this->table . "
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    ORDER BY tanggal DESC");
+
+    $this->db->bind('bulan', (int)date('m') - 1);
+    $this->db->bind('tahun', (int)date('Y'));
+
+    return $this->db->single();
+  }
+
   public function showPengeluaranByKategoriByBulan($data = [])
   {
     if (isset($data['tahun'])) {
@@ -67,30 +104,6 @@ class Pengeluaran_model
 
     return $this->db->resultSet();
   }
-
-  public function showAveragePengeluaranByBulan($data = [])
-  {
-    if (isset($data['tahun'])) {
-      $explode = explode('|', $data['bulan']);
-      $bulan = $explode[0];
-      $tahun = $data['tahun'];
-    } else {
-      $bulan = (int)date('m');
-      $tahun = (int)date('Y');
-    }
-
-    $this->db->query("SELECT AVG(nominal) AS average FROM " . $this->table . "
-    WHERE MONTH(tanggal) = :bulan
-    AND
-    YEAR(tanggal) = :tahun
-    ORDER BY tanggal DESC");
-
-    $this->db->bind('bulan', $bulan);
-    $this->db->bind('tahun', $tahun);
-
-    return $this->db->single();
-  }
-
 
   public function defaultPengeluaranPerHari()
   {
@@ -145,6 +158,31 @@ class Pengeluaran_model
     $this->db->query($query);
     $this->db->bind('bulan', $bulan);
     $this->db->bind('tahun', $data['tahun']);
+    $this->db->execute();
+
+    return $this->db->rowCount();
+  }
+
+  public function getPengeluaranByKategoriByBulan($data)
+  {
+    if (isset($data['tahun'])) {
+      $explode = explode('|', $data['bulan']);
+      $bulan = $explode[0];
+      $tahun = $data['tahun'];
+    } else {
+      $bulan = (int)date('m');
+      $tahun = (int)date('Y');
+    }
+
+    $this->db->query("SELECT kategori, SUM(nominal) AS totalNominal FROM " . $this->table . "
+    WHERE MONTH(tanggal) = :bulan
+    AND
+    YEAR(tanggal) = :tahun
+    GROUP BY kategori
+    ORDER BY totalNominal DESC");
+
+    $this->db->bind('bulan', $bulan);
+    $this->db->bind('tahun', $tahun);
     $this->db->execute();
 
     return $this->db->rowCount();

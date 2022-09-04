@@ -24,17 +24,18 @@
       <div class="form-group">
         <label for="kategori">Kategori*</label>
         <select class="form-control" id="kategori" name="kategori" required>
-          <option value="Makan / Minum">Makan / Minum</option>
-          <option value="Transpor">Transpor</option>
-          <option value="Rokok">Rokok</option>
-          <option value="Olahraga">Olahraga</option>
-          <option value="Hobi">Hobi</option>
           <option value="Buku">Buku</option>
-          <option value="Grooming">Grooming</option>
           <option value="Fashion">Fashion</option>
-          <option value="Keluarga">Keluarga</option>
-          <option value="Infaq / Sodaqoh">Infaq / Sodaqoh</option>
+          <option value="Grooming">Grooming</option>
           <option value="Hiburan">Hiburan</option>
+          <option value="Hobi">Hobi</option>
+          <option value="Infaq / Sodaqoh">Infaq / Sodaqoh</option>
+          <option value="Keluarga">Keluarga</option>
+          <option value="Makan / Minum">Makan / Minum</option>
+          <option value="Olahraga">Olahraga</option>
+          <option value="Rokok">Rokok</option>
+          <option value="Tagihan">Tagihan</option>
+          <option value="Transpor">Transpor</option>
           <option value="Lain-lain">Lain-lain</option>
         </select>
       </div>

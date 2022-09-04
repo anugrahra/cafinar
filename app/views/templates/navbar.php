@@ -28,6 +28,7 @@
             <a class="dropdown-item" href="<?= BASEURL; ?>/pengeluaran">Daftar Pengeluaran</a>
             <a class="dropdown-item" href="<?= BASEURL; ?>/pengeluaran/tambah">Tambah Pengeluaran</a>
             <a class="dropdown-item" href="<?= BASEURL; ?>/pengeluaran/statistik">Statistik</a>
+            <a class="dropdown-item" href="<?= BASEURL; ?>/pengeluaran/persentase">Persentase</a>
           </div>
         </div>
         <div class="nav-item dropdown">

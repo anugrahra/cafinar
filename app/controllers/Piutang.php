@@ -48,12 +48,18 @@ class Piutang extends Controller
   public function prosesTambah()
   {
     if ($this->model('Piutang_model')->tambah($_POST) > 0) {
-      if ($this->model('Saldo_model')->keluar($_POST) > 0) {
-        Flasher::setFlash('success', 'Piutang', 'berhasil', 'ditambahkan');
-        header('Location: ' . BASEURL . '/piutang');
-        exit;
+      if ($this->model('Pengeluaran_model')->tambah($_POST) > 0) {
+        if ($this->model('Saldo_model')->keluar($_POST) > 0) {
+          Flasher::setFlash('success', 'Piutang', 'berhasil', 'ditambahkan');
+          header('Location: ' . BASEURL . '/piutang');
+          exit;
+        } else {
+          Flasher::setFlash('success', 'Saldo', 'gagal', 'dikurangi');
+          header('Location: ' . BASEURL . '/piutang');
+          exit;
+        }
       } else {
-        Flasher::setFlash('success', 'Saldo', 'gagal', 'dikurangi');
+        Flasher::setFlash('danger', 'Pengeluaran', 'gagal', 'ditambahkan');
         header('Location: ' . BASEURL . '/piutang');
         exit;
       }
@@ -97,6 +103,41 @@ class Piutang extends Controller
       exit;
     } else {
       Flasher::setFlash('danger', 'Piutang', 'gagal', 'diikhlaskan');
+      header('Location: ' . BASEURL . '/piutang');
+      exit;
+    }
+  }
+
+  public function cicil($id)
+  {
+    $data['cicil'] = $this->model('Piutang_model')->getPiutangById($id);
+    $data['title'] = 'CICIL PIUTANG | ' . $this->title;
+    $this->view('templates/header', $data);
+    $this->view('templates/navbar');
+    $this->view('piutang/cicil', $data);
+    $this->view('templates/footer');
+  }
+
+  public function prosescicil()
+  {
+    if ($this->model('Piutang_model')->cicil($_POST) > 0) {
+      if ($this->model('Pemasukan_model')->tambahfromcicil($_POST) > 0) {
+        if ($this->model('Saldo_model')->masuk($_POST) > 0) {
+          Flasher::setFlash('success', 'Piutang', 'berhasil', 'dicicil');
+          header('Location: ' . BASEURL . '/piutang');
+          exit;
+        } else {
+          Flasher::setFlash('danger', 'Saldo', 'gagal', 'diupdate');
+          header('Location: ' . BASEURL . '/piutang');
+          exit;
+        }
+      } else {
+        Flasher::setFlash('danger', 'Pemasukan', 'gagal', 'diupdate');
+        header('Location: ' . BASEURL . '/piutang');
+        exit;
+      }
+    } else {
+      Flasher::setFlash('danger', 'Piutang', 'gagal', 'dicicil');
       header('Location: ' . BASEURL . '/piutang');
       exit;
     }
