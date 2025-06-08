@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col">
-    <h3>PENGELUARAN</h3>
+    <h3>PERSENTASE PENGELUARAN</h3>
   </div>
 </div>
 

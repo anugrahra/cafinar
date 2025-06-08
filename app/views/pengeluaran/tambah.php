@@ -31,6 +31,7 @@
           <option value="Hobi">Hobi</option>
           <option value="Infaq / Sodaqoh">Infaq / Sodaqoh</option>
           <option value="Keluarga">Keluarga</option>
+          <option value="Kesehatan">Kesehatan</option>
           <option value="Makan / Minum">Makan / Minum</option>
           <option value="Olahraga">Olahraga</option>
           <option value="Rokok">Rokok</option>

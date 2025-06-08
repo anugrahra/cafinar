@@ -57,68 +57,80 @@ class Pengeluaran extends Controller
     $this->view('templates/footer');
   }
 
-  public function persentase()
-  {
-    $data['title'] = 'STATISTIK PERSENTASE | ' . $this->title;
-    $data['bulan'] = date('F');
-    $data['tahun'] = date('Y');
-    $data['total'] = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulan();
-    $data['bulanlalu'] = $this->model('Pengeluaran_model')->showTotalPengeluaranBulanLalu();
-    $data['sumkategori'] = $this->model('Pengeluaran_model')->showPengeluaranByKategoriByBulan();
-    $data['banding'] = abs(100 - ((int)$data['total']['total'] / (int)$data['bulanlalu']['total'] * 100));
-    $data['hidepengeluaran'] = "";
+public function persentase()
+{
+  $data['title'] = 'STATISTIK PERSENTASE | ' . $this->title;
+  $data['bulan'] = date('F');
+  $data['tahun'] = date('Y');
+  $data['hidepengeluaran'] = "";
 
-    if ((int)$data['total']['total'] > (int)$data['bulanlalu']['total']) {
-      $data['bandingcolor'] = 'danger';
-      $data['arrow'] = '&#8593;';
-      $data['turunnaik'] = 'Naik';
-    } else if ((int)$data['total']['total'] < (int)$data['bulanlalu']['total']) {
-      $data['bandingcolor'] = 'success';
-      $data['arrow'] = '&#8595;';
-      $data['turunnaik'] = 'Turun';
+  // Fungsi pembantu untuk hitung persentase & atributnya
+  $hitungBanding = function ($total, $bulanlalu) {
+    $result = [];
+    if ((int)$bulanlalu == 0) {
+      $result['banding'] = 100;
+      $result['bandingnote'] = 'Tidak ada data bulan lalu';
+      $result['bandingcolor'] = 'danger';
+      $result['arrow'] = '&#8593;';
+      $result['turunnaik'] = 'Naik';
     } else {
-      $data['bandingcolor'] = 'secondary';
-      $data['arrow'] = '&#8644;';
-      $data['turunnaik'] = 'Sama';
-    }
+      $persentase = abs(100 - ((int)$total / (int)$bulanlalu * 100));
+      $result['banding'] = $persentase;
+      $result['bandingnote'] = '';
 
-    if (isset($_POST['bulan'])) {
-      if ($this->model('Pengeluaran_model')->getPengeluaranByKategoriByBulan($_POST) > 0) {
-        $explode = explode('|', $_POST['bulan']);
-        $bulan = $explode[1];
-        $data['bulan'] = $bulan;
-        $data['tahun'] = $_POST['tahun'];
-        $data['sumkategori'] = $this->model('Pengeluaran_model')->showPengeluaranByKategoriByBulan($_POST);
-        $data['total'] = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulan($_POST);
-        $data['bulanlalu'] = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulanLalunya($_POST);
-        $data['banding'] = abs(100 - ((int)$data['total']['total'] / (int)$data['bulanlalu']['total'] * 100));
-        $data['hidepengeluaran'] = "d-none";
-
-        if ((int)$data['total']['total'] > (int)$data['bulanlalu']['total']) {
-          $data['bandingcolor'] = 'danger';
-          $data['arrow'] = '&#8593;';
-          $data['turunnaik'] = 'Naik';
-        } else if ((int)$data['total']['total'] < (int)$data['bulanlalu']['total']) {
-          $data['bandingcolor'] = 'success';
-          $data['arrow'] = '&#8595;';
-          $data['turunnaik'] = 'Turun';
-        } else {
-          $data['bandingcolor'] = 'secondary';
-          $data['arrow'] = '&#8644;';
-          $data['turunnaik'] = 'Sama';
-        }
+      if ((int)$total > (int)$bulanlalu) {
+        $result['bandingcolor'] = 'danger';
+        $result['arrow'] = '&#8593;';
+        $result['turunnaik'] = 'Naik';
+      } else if ((int)$total < (int)$bulanlalu) {
+        $result['bandingcolor'] = 'success';
+        $result['arrow'] = '&#8595;';
+        $result['turunnaik'] = 'Turun';
       } else {
-        Flasher::setFlash('danger', 'Pengeluaran', 'tidak', 'ditemukan');
-        header('Location: ' . BASEURL . '/pengeluaran/persentase');
-        exit;
+        $result['bandingcolor'] = 'secondary';
+        $result['arrow'] = '&#8644;';
+        $result['turunnaik'] = 'Sama';
       }
     }
+    return $result;
+  };
 
-    $this->view('templates/header', $data);
-    $this->view('templates/navbar');
-    $this->view('pengeluaran/persentase', $data);
-    $this->view('templates/footer');
+  // Load default data
+  $data['total'] = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulan();
+  $data['bulanlalu'] = $this->model('Pengeluaran_model')->showTotalPengeluaranBulanLalu();
+  $data['sumkategori'] = $this->model('Pengeluaran_model')->showPengeluaranByKategoriByBulan();
+
+  $bandingData = $hitungBanding($data['total']['total'], $data['bulanlalu']['total']);
+  $data = array_merge($data, $bandingData);
+
+  // Jika ada input bulan dari user
+  if (isset($_POST['bulan'])) {
+    if ($this->model('Pengeluaran_model')->getPengeluaranByKategoriByBulan($_POST) > 0) {
+      $explode = explode('|', $_POST['bulan']);
+      $bulan = $explode[1];
+
+      $data['bulan'] = $bulan;
+      $data['tahun'] = $_POST['tahun'];
+      $data['sumkategori'] = $this->model('Pengeluaran_model')->showPengeluaranByKategoriByBulan($_POST);
+      $data['total'] = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulan($_POST);
+      $data['bulanlalu'] = $this->model('Pengeluaran_model')->showTotalPengeluaranByBulanLalunya($_POST);
+      $data['hidepengeluaran'] = "d-none";
+
+      $bandingData = $hitungBanding($data['total']['total'], $data['bulanlalu']['total']);
+      $data = array_merge($data, $bandingData);
+    } else {
+      Flasher::setFlash('danger', 'Pengeluaran', 'tidak', 'ditemukan');
+      header('Location: ' . BASEURL . '/pengeluaran/persentase');
+      exit;
+    }
   }
+
+  $this->view('templates/header', $data);
+  $this->view('templates/navbar');
+  $this->view('pengeluaran/persentase', $data);
+  $this->view('templates/footer');
+}
+
 
   public function tambah()
   {
